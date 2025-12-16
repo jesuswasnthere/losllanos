@@ -63,8 +63,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <p className="text-muted-foreground">contacto@multirepuestoslosllanos.com</p>
-                    <p className="text-muted-foreground">ventas@multirepuestoslosllanos.com</p>
+                    <p className="text-muted-foreground">multirepuestoslosllanos@hotmail.com</p>
+                    {/* <p className="text-muted-foreground">multirepuestoslosllanos@hotmail.com</p> */}
                   </div>
                 </div>
 
@@ -74,8 +74,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Teléfono</h4>
-                    <p className="text-muted-foreground">+58 (212) 555-0123</p>
-                    <p className="text-muted-foreground">+58 (414) 555-0456</p>
+                    <p className="text-muted-foreground">+58 412 5249992</p>
+                    <p className="text-muted-foreground">+58 414 5341339</p>
                   </div>
                 </div>
 
@@ -86,9 +86,9 @@ export function ContactSection() {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Dirección</h4>
                     <p className="text-muted-foreground">
-                      Zona Industrial Los Llanos
+                      Acarigua, Sector Campo Lindo
                       <br />
-                      Caracas, Venezuela
+                      Portuguesa, Venezuela
                     </p>
                   </div>
                 </div>
@@ -104,11 +104,11 @@ export function ContactSection() {
                   </div>
                   <div className="flex justify-between">
                     <span>Sábados:</span>
-                    <span className="font-medium text-foreground">9:00 AM - 1:00 PM</span>
+                    <span className="font-medium text-foreground">8:00 AM - 5:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Domingos:</span>
-                    <span className="font-medium text-foreground">Cerrado</span>
+                    <span className="font-medium text-foreground">8:00 AM - 1:00 PM</span>
                   </div>
                 </div>
               </div>

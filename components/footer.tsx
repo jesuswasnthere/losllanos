@@ -68,10 +68,11 @@ export function Footer() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>+58 (212) 555-0123</li>
-                <li>contacto@multirepuestoslosllanos.com</li>
-                <li>Zona Industrial Los Llanos</li>
-                <li>Caracas, Venezuela</li>
+                <li>+58 414 5341339</li>
+                <li>multirepuestoslosllanos@hotmail.com</li>
+                <li>Acarigua, Sector Campo Lindo</li>
+                <li>Portuguesa, Venezuela</li>
+                <li>RIF: J-405043709</li>
               </ul>
             </div>
           </div>
@@ -81,6 +82,7 @@ export function Footer() {
             <p className="text-center text-sm text-muted-foreground">
               © {new Date().getFullYear()} Multi Repuestos los Llanos C.A. Todos los derechos reservados.
             </p>
+            <p className="text-center text-sm text-muted-foreground">RIF: J-405043709</p>
           </div>
         </div>
       </div>

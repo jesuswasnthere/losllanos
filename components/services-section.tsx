@@ -33,7 +33,7 @@ export function ServicesSection() {
     {
       icon: Clock,
       title: "Atención Continua",
-      description: "Servicio al cliente disponible para atender tus consultas y pedidos de manera ágil.",
+      description: "Servicio al cliente disponible para atender tus consultas y pedidos de manera ágil, a toda hora en todas nuestras redes sociales y WhatsApp.",
     },
   ]
 
