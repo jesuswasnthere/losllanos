@@ -45,7 +45,8 @@ export function ServicesSection() {
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">Nuestros Servicios</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Soluciones integrales para todas tus necesidades de repuestos de motocicletas
+              Soluciones integrales para todas tus necesidades de repuestos de motocicletas, con atención dedicada a
+              compras al mayor y al detal
             </p>
           </div>
 

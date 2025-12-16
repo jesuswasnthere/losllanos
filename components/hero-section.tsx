@@ -27,7 +27,7 @@ export function HeroSection() {
           {/* Subtítulo */}
           <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl text-pretty">
             Líderes en la distribución de repuestos de motos a nivel nacional. Calidad garantizada, experiencia
-            comprobada y compromiso total con nuestros clientes.
+            comprobada y compromiso total con nuestros clientes, con atención tanto al mayor como al detal.
           </p>
 
           {/* Botones de acción */}

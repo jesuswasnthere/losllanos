@@ -25,8 +25,8 @@ export function AboutSection() {
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 Ofrecemos una amplia gama de productos de las mejores marcas, garantizando disponibilidad inmediata y
-                precios competitivos. Nuestra red de distribución cubre todo el territorio nacional, asegurando que
-                nuestros clientes reciban sus pedidos de manera rápida y segura.
+                precios competitivos tanto para clientes al mayor como al detal. Nuestra red de distribución cubre todo
+                el territorio nacional, asegurando que nuestros clientes reciban sus pedidos de manera rápida y segura.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 Nuestro equipo de profesionales altamente capacitados está siempre dispuesto a brindar asesoría técnica
