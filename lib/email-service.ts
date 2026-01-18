@@ -49,7 +49,9 @@ export async function sendContactEmail(data: ContactFormData) {
     const result = await client.emails.send({
       from: smtpFrom as string,
       to: contactEmail as string,
-      replyTo: data.correo,
+      // Resend HTTP API uses snake_case; SDK types lag behind.
+      // @ts-expect-error reply_to is accepted by the API even if types complain.
+      reply_to: data.correo,
       subject: `Contacto web - ${data.nombre}`,
       html,
     })
