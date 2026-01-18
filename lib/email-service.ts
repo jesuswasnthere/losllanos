@@ -50,28 +50,40 @@ export async function sendContactEmail(data: ContactFormData) {
 
   try {
     const userHtml = buildUserHtml()
-    const userResult = await client.emails.send({
+    const { data: userData, error: userError } = await client.emails.send({
       from: smtpFrom as string,
       to: data.correo,
       replyTo: contactEmail || smtpFrom,
       subject: "Hola, gracias por tu interés",
       html: userHtml,
+      text: "Hola, gracias por tu interés. Pronto te enviaremos el catálogo actualizado.",
     })
-    console.info(JSON.stringify({ event: "email_user_sent", to: data.correo, id: userResult.data?.id }))
+
+    if (userError) {
+      console.error(JSON.stringify({ event: "email_user_error", to: data.correo, error: userError }))
+      return { sent: false, error: "Fallo al enviar el correo al destinatario" }
+    }
+
+    console.info(JSON.stringify({ event: "email_user_sent", to: data.correo, id: userData?.id }))
 
     if (contactEmail) {
       const internalHtml = buildInternalHtml(data)
-      await client.emails.send({
+      const { error: internalError } = await client.emails.send({
         from: smtpFrom as string,
         to: contactEmail,
         replyTo: data.correo,
         subject: "Solicitud de catálogo",
         html: internalHtml,
+        text: `Nueva solicitud de catálogo\nCorreo: ${data.correo}`,
       })
-      console.info(JSON.stringify({ event: "email_internal_sent", to: contactEmail, fromForm: data.correo }))
+      if (internalError) {
+        console.error(JSON.stringify({ event: "email_internal_error", to: contactEmail, error: internalError }))
+      } else {
+        console.info(JSON.stringify({ event: "email_internal_sent", to: contactEmail, fromForm: data.correo }))
+      }
     }
 
-    return { sent: true, id: userResult.data?.id, userNotified: true }
+    return { sent: true, id: userData?.id, userNotified: true }
   } catch (error) {
     console.error(JSON.stringify({ event: "email_send_error", error }))
     return { sent: false, error: "Fallo al enviar el correo" }
