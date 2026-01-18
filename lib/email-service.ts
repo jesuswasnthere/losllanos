@@ -49,7 +49,7 @@ export async function sendContactEmail(data: ContactFormData) {
     const result = await client.emails.send({
       from: smtpFrom as string,
       to: contactEmail as string,
-      reply_to: data.correo,
+      replyTo: data.correo,
       subject: `Contacto web - ${data.nombre}`,
       html,
     })
