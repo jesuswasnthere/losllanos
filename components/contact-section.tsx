@@ -3,19 +3,18 @@
 import type React from "react"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 
 type FormStatus = "idle" | "sending" | "success" | "error"
-type TestStatus = "idle" | "sending" | "success" | "error"
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 
 export function ContactSection() {
   const [status, setStatus] = useState<FormStatus>("idle")
-  const [testStatus, setTestStatus] = useState<TestStatus>("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState({
@@ -93,23 +92,6 @@ export function ContactSection() {
       setStatus("idle")
       setErrorMessage("")
       setFieldErrors({})
-    }
-  }
-
-  const handleTestSend = async () => {
-    if (testStatus === "sending") return
-    setTestStatus("sending")
-    try {
-      const response = await fetch("/api/test-send", { method: "POST" })
-      if (!response.ok) {
-        setTestStatus("error")
-        return
-      }
-      setTestStatus("success")
-      setTimeout(() => setTestStatus("idle"), 2000)
-    } catch (error) {
-      console.error("test_send_error", error)
-      setTestStatus("error")
     }
   }
 
@@ -196,6 +178,18 @@ export function ContactSection() {
 
             {/* Formulario de contacto */}
             <div>
+              <div className="mb-6 max-w-lg mx-auto overflow-hidden rounded-lg">
+                <div className="relative aspect-4/3">
+                  <Image
+                    src="/catalogo.png"
+                    alt="Catálogo de productos"
+                    fill
+                    sizes="(min-width: 1024px) 520px, 92vw"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="correo" className="text-foreground">
@@ -236,19 +230,6 @@ export function ContactSection() {
                   {status === "error" && "✗ Error al enviar"}
                 </Button>
 
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="w-full"
-                  onClick={handleTestSend}
-                  disabled={testStatus === "sending"}
-                >
-                  {testStatus === "idle" && "Prueba"}
-                  {testStatus === "sending" && "Enviando..."}
-                  {testStatus === "success" && "✓ Enviado"}
-                  {testStatus === "error" && "✗ Error"}
-                </Button>
-
                 {status === "success" && (
                   <p className="text-sm text-center text-green-600" aria-live="polite">
                     ¡Listo! Te enviaremos el catálogo a tu correo.
@@ -261,16 +242,6 @@ export function ContactSection() {
                       Reintentar
                     </Button>
                   </div>
-                )}
-                {testStatus === "success" && (
-                  <p className="text-sm text-center text-green-600" aria-live="polite">
-                    Correo de prueba enviado a jm17.org@gmail.com.
-                  </p>
-                )}
-                {testStatus === "error" && (
-                  <p className="text-sm text-center text-destructive" aria-live="assertive">
-                    No se pudo enviar la prueba.
-                  </p>
                 )}
               </form>
             </div>
