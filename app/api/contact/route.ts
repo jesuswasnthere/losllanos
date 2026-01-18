@@ -67,14 +67,13 @@ export async function POST(req: NextRequest) {
 
     const payload: ContactResponse = {
       success: true,
-      message: emailResult.sent ? "Mensaje enviado. Te contactaremos pronto." : "Mensaje recibido. Te contactaremos pronto.",
+      message: emailResult.sent ? "Solicitud recibida. Te enviaremos el catálogo pronto." : "Solicitud registrada. Te enviaremos el catálogo pronto.",
     }
 
     console.info(
       JSON.stringify({
-        event: "contact_message_received",
+        event: "catalog_request_received",
         ip,
-        nombre: validation.sanitizedData.nombre,
         correo: validation.sanitizedData.correo,
         emailSent: emailResult.sent,
       })

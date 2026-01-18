@@ -12,13 +12,19 @@ function getResendClient() {
   return new Resend(resendApiKey)
 }
 
-function buildHtml(data: ContactFormData) {
+function buildInternalHtml(data: ContactFormData) {
   return `
   <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
-    <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Nuevo mensaje de contacto</td></tr>
-    <tr><td style="padding:4px 0;"><strong>Nombre:</strong> ${escapeHtml(data.nombre)}</td></tr>
+    <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Nueva solicitud de catálogo</td></tr>
     <tr><td style="padding:4px 0;"><strong>Correo:</strong> ${escapeHtml(data.correo)}</td></tr>
-    <tr><td style="padding:12px 0;"><strong>Mensaje:</strong><br/>${escapeHtml(data.mensaje).replace(/\n/g, "<br/>")}</td></tr>
+  </table>`
+}
+
+function buildUserHtml() {
+  return `
+  <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
+    <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Hola 👋</td></tr>
+    <tr><td style="padding:4px 0;">Gracias por tu interés. Pronto te enviaremos el catálogo actualizado.</td></tr>
   </table>`
 }
 
@@ -45,17 +51,28 @@ export async function sendContactEmail(data: ContactFormData) {
   }
 
   try {
-    const html = buildHtml(data)
+    const internalHtml = buildInternalHtml(data)
     const result = await client.emails.send({
       from: smtpFrom as string,
       to: contactEmail as string,
       // Resend HTTP API uses snake_case; SDK types lag behind.
       // @ts-expect-error reply_to is accepted by the API even if types complain.
       reply_to: data.correo,
-      subject: `Contacto web - ${data.nombre}`,
-      html,
+      subject: "Solicitud de catálogo",
+      html: internalHtml,
     })
-    return { sent: true, id: result.data?.id }
+
+    const userHtml = buildUserHtml()
+    await client.emails.send({
+      from: smtpFrom as string,
+      to: data.correo,
+      // @ts-expect-error reply_to is accepted by the API even if types complain.
+      reply_to: contactEmail as string,
+      subject: "Hola, gracias por tu interés",
+      html: userHtml,
+    })
+
+    return { sent: true, id: result.data?.id, userNotified: true }
   } catch (error) {
     console.error(JSON.stringify({ event: "email_send_error", error }))
     return { sent: false, error: "Fallo al enviar el correo" }

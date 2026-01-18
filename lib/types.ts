@@ -1,7 +1,5 @@
 export interface ContactFormData {
-  nombre: string
   correo: string
-  mensaje: string
 }
 
 export interface ValidationResult {

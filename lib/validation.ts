@@ -17,18 +17,10 @@ export function sanitizeInput(input: string): string {
 
 export function validateContactForm(data: ContactFormData): ValidationResult {
   const sanitized: ContactFormData = {
-    nombre: sanitizeInput(data.nombre),
     correo: sanitizeInput(data.correo),
-    mensaje: sanitizeInput(data.mensaje),
   }
 
   const errors: Record<string, string> = {}
-
-  if (!sanitized.nombre) {
-    errors.nombre = "El nombre es requerido."
-  } else if (sanitized.nombre.length < 2 || sanitized.nombre.length > 80) {
-    errors.nombre = "El nombre debe tener entre 2 y 80 caracteres."
-  }
 
   if (!sanitized.correo) {
     errors.correo = "El correo es requerido."
@@ -36,12 +28,6 @@ export function validateContactForm(data: ContactFormData): ValidationResult {
     errors.correo = "El correo no debe exceder 120 caracteres."
   } else if (!validateEmail(sanitized.correo)) {
     errors.correo = "Ingresa un correo válido."
-  }
-
-  if (!sanitized.mensaje) {
-    errors.mensaje = "El mensaje es requerido."
-  } else if (sanitized.mensaje.length < 10 || sanitized.mensaje.length > 1000) {
-    errors.mensaje = "El mensaje debe tener entre 10 y 1000 caracteres."
   }
 
   return {

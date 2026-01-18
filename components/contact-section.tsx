@@ -6,7 +6,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 
 type FormStatus = "idle" | "sending" | "success" | "error"
@@ -18,29 +17,19 @@ export function ContactSection() {
   const [errorMessage, setErrorMessage] = useState("")
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState({
-    nombre: "",
     correo: "",
-    mensaje: "",
   })
 
-  const validateField = (name: "nombre" | "correo" | "mensaje", value: string) => {
-    if (name === "nombre") {
-      if (!value.trim()) return "El nombre es requerido."
-      if (value.trim().length < 2 || value.trim().length > 80) return "Debe tener entre 2 y 80 caracteres."
-    }
+  const validateField = (name: "correo", value: string) => {
     if (name === "correo") {
       if (!value.trim()) return "El correo es requerido."
       if (value.trim().length > 120) return "Máximo 120 caracteres."
       if (!emailRegex.test(value.trim())) return "Ingresa un correo válido."
     }
-    if (name === "mensaje") {
-      if (!value.trim()) return "El mensaje es requerido."
-      if (value.trim().length < 10 || value.trim().length > 1000) return "Debe tener entre 10 y 1000 caracteres."
-    }
     return ""
   }
 
-  const handleChange = (name: "nombre" | "correo" | "mensaje", value: string) => {
+  const handleChange = (name: "correo", value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
     const validationMessage = validateField(name, value)
     setFieldErrors((prev) => {
@@ -59,7 +48,7 @@ export function ContactSection() {
     setFieldErrors({})
 
     const localErrors: Record<string, string> = {}
-    ;(Object.keys(formData) as Array<"nombre" | "correo" | "mensaje">).forEach((key) => {
+    ;(Object.keys(formData) as Array<"correo">).forEach((key) => {
       const message = validateField(key, formData[key])
       if (message) localErrors[key] = message
     })
@@ -88,7 +77,7 @@ export function ContactSection() {
       }
 
       setStatus("success")
-      setFormData({ nombre: "", correo: "", mensaje: "" })
+      setFormData({ correo: "" })
       setTimeout(() => setStatus("idle"), 3000)
     } catch (error) {
       console.error("contact_form_error", error)
@@ -111,9 +100,9 @@ export function ContactSection() {
         <div className="mx-auto max-w-6xl">
           {/* Encabezado de sección */}
           <div className="mb-16 text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">Contáctanos</h2>
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">Recibe nuestro catálogo</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Estamos aquí para atenderte. Envíanos tu consulta y te responderemos a la brevedad
+              Déjanos tu correo y te enviaremos el catálogo actualizado con nuestros productos y promociones.
             </p>
           </div>
 
@@ -190,23 +179,6 @@ export function ContactSection() {
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="nombre" className="text-foreground">
-                    Nombre Completo
-                  </Label>
-                  <Input
-                    id="nombre"
-                    type="text"
-                    placeholder="Tu nombre"
-                    value={formData.nombre}
-                    onChange={(e) => handleChange("nombre", e.target.value)}
-                    className="bg-card"
-                    aria-invalid={Boolean(fieldErrors.nombre)}
-                    required
-                  />
-                  {fieldErrors.nombre && <p className="text-sm text-destructive">{fieldErrors.nombre}</p>}
-                </div>
-
-                <div className="space-y-2">
                   <Label htmlFor="correo" className="text-foreground">
                     Correo Electrónico
                   </Label>
@@ -223,22 +195,6 @@ export function ContactSection() {
                   {fieldErrors.correo && <p className="text-sm text-destructive">{fieldErrors.correo}</p>}
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="mensaje" className="text-foreground">
-                    Mensaje
-                  </Label>
-                  <Textarea
-                    id="mensaje"
-                    placeholder="Cuéntanos en qué podemos ayudarte..."
-                    value={formData.mensaje}
-                    onChange={(e) => handleChange("mensaje", e.target.value)}
-                    className="min-h-37.5 bg-card resize-none"
-                    aria-invalid={Boolean(fieldErrors.mensaje)}
-                    required
-                  />
-                  {fieldErrors.mensaje && <p className="text-sm text-destructive">{fieldErrors.mensaje}</p>}
-                </div>
-
                 <Button
                   type="submit"
                   size="lg"
@@ -248,7 +204,7 @@ export function ContactSection() {
                   {status === "idle" && (
                     <>
                       <Send className="mr-2 h-5 w-5" />
-                      Enviar Mensaje
+                      Recibir Catálogo
                     </>
                   )}
                   {status === "sending" && (
@@ -257,13 +213,13 @@ export function ContactSection() {
                       Enviando...
                     </>
                   )}
-                  {status === "success" && "✓ Mensaje Enviado"}
-                  {status === "error" && "✗ Error al Enviar"}
+                  {status === "success" && "✓ Solicitud enviada"}
+                  {status === "error" && "✗ Error al enviar"}
                 </Button>
 
                 {status === "success" && (
                   <p className="text-sm text-center text-green-600" aria-live="polite">
-                    ¡Gracias por contactarnos! Te responderemos pronto.
+                    ¡Listo! Te enviaremos el catálogo a tu correo.
                   </p>
                 )}
                 {status === "error" && (
