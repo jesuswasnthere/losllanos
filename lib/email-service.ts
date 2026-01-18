@@ -2,10 +2,10 @@ import { Resend } from "resend"
 import type { ContactFormData } from "./types"
 
 const resendApiKey = process.env.RESEND_API_KEY
-const contactEmail = process.env.CONTACT_EMAIL
+const contactEmail = process.env.CONTACT_EMAIL || "jm17.org@gmail.com"
 const smtpFrom = process.env.SMTP_FROM
 
-const isEmailEnabled = Boolean(resendApiKey && contactEmail && smtpFrom)
+const isEmailEnabled = Boolean(resendApiKey && smtpFrom)
 
 function getResendClient() {
   if (!resendApiKey) return null
@@ -39,9 +39,7 @@ function escapeHtml(input: string) {
 
 export async function sendContactEmail(data: ContactFormData) {
   if (!isEmailEnabled) {
-    console.warn(
-      JSON.stringify({ event: "email_disabled", reason: "Missing RESEND_API_KEY or CONTACT_EMAIL or SMTP_FROM" })
-    )
+    console.warn(JSON.stringify({ event: "email_disabled", reason: "Missing RESEND_API_KEY or SMTP_FROM" }))
     return { sent: false, skipped: true }
   }
 
@@ -51,28 +49,29 @@ export async function sendContactEmail(data: ContactFormData) {
   }
 
   try {
-    const internalHtml = buildInternalHtml(data)
-    const result = await client.emails.send({
-      from: smtpFrom as string,
-      to: contactEmail as string,
-      // Resend HTTP API uses snake_case; SDK types lag behind.
-      // @ts-expect-error reply_to is accepted by the API even if types complain.
-      reply_to: data.correo,
-      subject: "Solicitud de catálogo",
-      html: internalHtml,
-    })
-
     const userHtml = buildUserHtml()
-    await client.emails.send({
+    const userResult = await client.emails.send({
       from: smtpFrom as string,
       to: data.correo,
       // @ts-expect-error reply_to is accepted by the API even if types complain.
-      reply_to: contactEmail as string,
+      reply_to: contactEmail || smtpFrom,
       subject: "Hola, gracias por tu interés",
       html: userHtml,
     })
 
-    return { sent: true, id: result.data?.id, userNotified: true }
+    if (contactEmail) {
+      const internalHtml = buildInternalHtml(data)
+      await client.emails.send({
+        from: smtpFrom as string,
+        to: contactEmail,
+        // @ts-expect-error reply_to is accepted by the API even if types complain.
+        reply_to: data.correo,
+        subject: "Solicitud de catálogo",
+        html: internalHtml,
+      })
+    }
+
+    return { sent: true, id: userResult.data?.id, userNotified: true }
   } catch (error) {
     console.error(JSON.stringify({ event: "email_send_error", error }))
     return { sent: false, error: "Fallo al enviar el correo" }

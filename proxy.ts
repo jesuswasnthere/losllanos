@@ -43,10 +43,11 @@ function applySecurityHeaders(response: NextResponse) {
     [
       "default-src 'self'",
       "img-src 'self' data: https:",
-      "script-src 'self'",
+      // Allow inline/eval/ws for Next.js dev and client hydration; include Vercel analytics script host.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://va.vercel-scripts.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data: https:",
-      "connect-src 'self'",
+      "connect-src 'self' https: http: ws: wss: https://va.vercel-scripts.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
