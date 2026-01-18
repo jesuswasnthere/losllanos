@@ -126,4 +126,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Scroll suave para enlaces internos */
+  html {
+    scroll-behavior: smooth;
+  }
 }

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
@@ -32,24 +33,11 @@ export function HeroSection() {
 
           {/* Botones de acción */}
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6"
-              onClick={() => {
-                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })
-              }}
-            >
-              Contáctanos
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6" aria-label="Ir a contacto">
+              <Link href="/#contacto">Contáctanos</Link>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 text-base px-8 py-6 bg-transparent"
-              onClick={() => {
-                document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth" })
-              }}
-            >
-              Nuestros Servicios
+            <Button asChild size="lg" variant="outline" className="border-2 text-base px-8 py-6 bg-transparent" aria-label="Ver servicios">
+              <Link href="/#servicios">Nuestros Servicios</Link>
             </Button>
           </div>
 

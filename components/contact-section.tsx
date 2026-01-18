@@ -9,27 +9,98 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 
+type FormStatus = "idle" | "sending" | "success" | "error"
+
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+
 export function ContactSection() {
-  const [formState, setFormState] = useState<"idle" | "success" | "error">("idle")
+  const [status, setStatus] = useState<FormStatus>("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
     mensaje: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const validateField = (name: "nombre" | "correo" | "mensaje", value: string) => {
+    if (name === "nombre") {
+      if (!value.trim()) return "El nombre es requerido."
+      if (value.trim().length < 2 || value.trim().length > 80) return "Debe tener entre 2 y 80 caracteres."
+    }
+    if (name === "correo") {
+      if (!value.trim()) return "El correo es requerido."
+      if (value.trim().length > 120) return "Máximo 120 caracteres."
+      if (!emailRegex.test(value.trim())) return "Ingresa un correo válido."
+    }
+    if (name === "mensaje") {
+      if (!value.trim()) return "El mensaje es requerido."
+      if (value.trim().length < 10 || value.trim().length > 1000) return "Debe tener entre 10 y 1000 caracteres."
+    }
+    return ""
+  }
 
-    // Simulación de envío
-    if (formData.nombre && formData.correo && formData.mensaje) {
-      setFormState("success")
-      setTimeout(() => {
-        setFormState("idle")
-        setFormData({ nombre: "", correo: "", mensaje: "" })
-      }, 3000)
-    } else {
-      setFormState("error")
-      setTimeout(() => setFormState("idle"), 3000)
+  const handleChange = (name: "nombre" | "correo" | "mensaje", value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    const validationMessage = validateField(name, value)
+    setFieldErrors((prev) => {
+      const next = { ...prev }
+      if (validationMessage) next[name] = validationMessage
+      else delete next[name]
+      return next
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("sending")
+    setErrorMessage("")
+    setFieldErrors({})
+
+    const localErrors: Record<string, string> = {}
+    ;(Object.keys(formData) as Array<"nombre" | "correo" | "mensaje">).forEach((key) => {
+      const message = validateField(key, formData[key])
+      if (message) localErrors[key] = message
+    })
+
+    if (Object.keys(localErrors).length > 0) {
+      setFieldErrors(localErrors)
+      setStatus("error")
+      setErrorMessage("Revisa los campos marcados.")
+      return
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = (await response.json()) as { message?: string; errors?: Record<string, string> }
+
+      if (!response.ok) {
+        setStatus("error")
+        setErrorMessage(data.message || "No pudimos enviar tu mensaje.")
+        setFieldErrors(data.errors || {})
+        return
+      }
+
+      setStatus("success")
+      setFormData({ nombre: "", correo: "", mensaje: "" })
+      setTimeout(() => setStatus("idle"), 3000)
+    } catch (error) {
+      console.error("contact_form_error", error)
+      setStatus("error")
+      setErrorMessage("No pudimos enviar tu mensaje. Intenta nuevamente.")
+    }
+  }
+
+  const handleRetry = () => {
+    if (status === "error") {
+      setStatus("idle")
+      setErrorMessage("")
+      setFieldErrors({})
     }
   }
 
@@ -126,10 +197,12 @@ export function ContactSection() {
                     type="text"
                     placeholder="Tu nombre"
                     value={formData.nombre}
-                    onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                    onChange={(e) => handleChange("nombre", e.target.value)}
                     className="bg-card"
+                    aria-invalid={Boolean(fieldErrors.nombre)}
                     required
                   />
+                  {fieldErrors.nombre && <p className="text-sm text-destructive">{fieldErrors.nombre}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -141,10 +214,12 @@ export function ContactSection() {
                     type="email"
                     placeholder="tu@email.com"
                     value={formData.correo}
-                    onChange={(e) => setFormData({ ...formData, correo: e.target.value })}
+                    onChange={(e) => handleChange("correo", e.target.value)}
                     className="bg-card"
+                    aria-invalid={Boolean(fieldErrors.correo)}
                     required
                   />
+                  {fieldErrors.correo && <p className="text-sm text-destructive">{fieldErrors.correo}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -155,37 +230,48 @@ export function ContactSection() {
                     id="mensaje"
                     placeholder="Cuéntanos en qué podemos ayudarte..."
                     value={formData.mensaje}
-                    onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                    onChange={(e) => handleChange("mensaje", e.target.value)}
                     className="min-h-37.5 bg-card resize-none"
+                    aria-invalid={Boolean(fieldErrors.mensaje)}
                     required
                   />
+                  {fieldErrors.mensaje && <p className="text-sm text-destructive">{fieldErrors.mensaje}</p>}
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                  disabled={formState !== "idle"}
+                  disabled={status !== "idle"}
                 >
-                  {formState === "idle" && (
+                  {status === "idle" && (
                     <>
                       <Send className="mr-2 h-5 w-5" />
                       Enviar Mensaje
                     </>
                   )}
-                  {formState === "success" && "✓ Mensaje Enviado"}
-                  {formState === "error" && "✗ Error al Enviar"}
+                  {status === "sending" && (
+                    <>
+                      <span className="mr-2 inline-block h-5 w-5 animate-spin rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground" />
+                      Enviando...
+                    </>
+                  )}
+                  {status === "success" && "✓ Mensaje Enviado"}
+                  {status === "error" && "✗ Error al Enviar"}
                 </Button>
 
-                {formState === "success" && (
-                  <p className="text-sm text-center text-green-600">
+                {status === "success" && (
+                  <p className="text-sm text-center text-green-600" aria-live="polite">
                     ¡Gracias por contactarnos! Te responderemos pronto.
                   </p>
                 )}
-                {formState === "error" && (
-                  <p className="text-sm text-center text-destructive">
-                    Por favor completa todos los campos del formulario.
-                  </p>
+                {status === "error" && (
+                  <div className="space-y-2 text-center" aria-live="assertive">
+                    <p className="text-sm text-destructive">{errorMessage || "Ocurrió un error. Intenta de nuevo."}</p>
+                    <Button variant="outline" size="sm" type="button" onClick={handleRetry}>
+                      Reintentar
+                    </Button>
+                  </div>
                 )}
               </form>
             </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Package, Truck, Headset, ShieldCheck, Zap, Clock } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
@@ -76,14 +77,13 @@ export function ServicesSection() {
           {/* Llamado a la acción adicional */}
           <div className="mt-16 text-center">
             <p className="text-lg text-muted-foreground mb-6">¿Necesitas más información sobre nuestros servicios?</p>
-            <button
-              onClick={() => {
-                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })
-              }}
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            <Link
+              href="/#contacto"
+              aria-label="Ir a la sección de contacto"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 visited:text-primary-foreground"
             >
               Contáctanos Ahora
-            </button>
+            </Link>
           </div>
         </div>
       </div>

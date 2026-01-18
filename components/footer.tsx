@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
@@ -19,36 +21,36 @@ export function Footer() {
               <h3 className="text-lg font-semibold text-foreground">Enlaces</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                  <Link
+                    href="/"
+                    className="text-muted-foreground hover:text-primary visited:text-muted-foreground transition-colors"
                   >
                     Inicio
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => document.getElementById("nosotros")?.scrollIntoView({ behavior: "smooth" })}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                  <Link
+                    href="/#nosotros"
+                    className="text-muted-foreground hover:text-primary visited:text-muted-foreground transition-colors"
                   >
                     Sobre Nosotros
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth" })}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                  <Link
+                    href="/#servicios"
+                    className="text-muted-foreground hover:text-primary visited:text-muted-foreground transition-colors"
                   >
                     Servicios
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                  <Link
+                    href="/#contacto"
+                    className="text-muted-foreground hover:text-primary visited:text-muted-foreground transition-colors"
                   >
                     Contacto
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>

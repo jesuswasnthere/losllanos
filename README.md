@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+	<img src="./public/logo.svg" alt="Multi Repuestos los Llanos" width="320" />
+</p>
 
-## Getting Started
+<p align="center">
+	<a href="https://nextjs.org/">Next.js 16</a> · <a href="https://react.dev/">React 19</a> · <a href="https://www.typescriptlang.org/">TypeScript</a> · <a href="https://tailwindcss.com/">Tailwind CSS 4</a>
+</p>
 
-First, run the development server:
+## 🏢 Multi Repuestos los Llanos - Sitio Web Corporativo
 
+Sitio web corporativo para **Multi Repuestos los Llanos C.A.**, distribuidora nacional de repuestos de motos. Proyecto con App Router, diseño responsive, formulario de contacto con validación y API propia.
+
+### ✨ Características
+- Hero, servicios, sobre nosotros, contacto y footer responsivos
+- Formulario conectado a `/api/contact` con validación y rate limiting
+- Headers de seguridad y CORS vía `proxy.ts`
+- Paleta corporativa (rojo + gris) y tipografía Geist
+- Metadata SEO (OG/Twitter) y sitemap
+
+### 🛠 Stack Tecnológico
+- Next.js 16 (App Router), React 19
+- TypeScript, Tailwind CSS 4, shadcn/ui
+- Vercel Analytics
+
+## 🚀 Inicio Rápido
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# abre http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Variables de Entorno
+Crea `.env.local` a partir de [.env.example](.env.example):
+```
+RESEND_API_KEY=your_resend_api_key_here
+CONTACT_EMAIL=multirepuestoslosllanos@hotmail.com
+SMTP_FROM=noreply@multirepuestoslosllanos.com
+NEXT_PUBLIC_SITE_URL=https://multirepuestoslosllanos.com
+NEXT_PUBLIC_SITE_NAME=Multi Repuestos los Llanos C.A.
+RATE_LIMIT_MAX_REQUESTS=5
+RATE_LIMIT_WINDOW_MS=900000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Scripts Disponibles
+- `npm run dev` – entorno de desarrollo
+- `npm run build` – build de producción
+- `npm run start` – sirve la build
+- `npm run lint` – linting
+- `npm run type-check` – chequeo TypeScript (agregar en package.json si se desea)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Estructura del Proyecto
+- app/ → rutas App Router, layouts, API
+- components/ → secciones y UI (shadcn)
+- lib/ → utilidades, validación, tipos
+- public/ → assets estáticos (favicon, og-image, logo)
 
-## Learn More
+## 🌐 Deployment
+- Objetivo: Vercel. Ajusta `NEXT_PUBLIC_SITE_URL` y variables en dashboard.
+- Health check en `/api/health`.
+- Proxy global en [proxy.ts](proxy.ts) aplica headers de seguridad.
 
-To learn more about Next.js, take a look at the following resources:
+## 👥 Equipo
+- Pasante: Jesús David Mariño Martínez
+- Asistencia: GitHub Copilot (GPT-5.1-Codex-Max)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 Licencia
+Uso interno del cliente. Añadir licencia formal si se requiere.

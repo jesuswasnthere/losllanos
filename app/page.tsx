@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer"
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen" role="main">
       <HeroSection />
       <AboutSection />
       <ServicesSection />
