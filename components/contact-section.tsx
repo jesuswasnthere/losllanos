@@ -53,6 +53,7 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    e.stopPropagation()
     setStatus("sending")
     setErrorMessage("")
     setFieldErrors({})
@@ -242,7 +243,7 @@ export function ContactSection() {
                   type="submit"
                   size="lg"
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                  disabled={status !== "idle"}
+                  disabled={status === "sending"}
                 >
                   {status === "idle" && (
                     <>
