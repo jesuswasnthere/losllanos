@@ -32,7 +32,7 @@ npm run dev
 ## 🔧 Variables de Entorno
 Crea `.env.local` a partir de [.env.example](.env.example):
 ```
-RESEND_API_KEY=re_Z2gRZXz2_GJsbBkuy5nmFwhf1FDp2Yttv
+RESEND_API_KEY=aquilaki
 CONTACT_EMAIL=multirepuestoslosllanos@hotmail.com
 SMTP_FROM=noreply@multirepuestoslosllanos.com
 NEXT_PUBLIC_SITE_URL=https://multirepuestoslosllanos.com

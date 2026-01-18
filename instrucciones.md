@@ -189,7 +189,7 @@ interface RateLimitInfo {
 ```bash
 # .env.example
 # API Keys (si se usa servicio de email)
-RESEND_API_KEY=re_Z2gRZXz2_GJsbBkuy5nmFwhf1FDp2Yttv
+RESEND_API_KEY=aquilaki
 
 # Email Configuration
 CONTACT_EMAIL=multirepuestoslosllanos@hotmail.com
