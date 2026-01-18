@@ -53,22 +53,22 @@ export async function sendContactEmail(data: ContactFormData) {
     const userResult = await client.emails.send({
       from: smtpFrom as string,
       to: data.correo,
-      // @ts-expect-error reply_to is accepted by the API even if types complain.
-      reply_to: contactEmail || smtpFrom,
+      replyTo: contactEmail || smtpFrom,
       subject: "Hola, gracias por tu interés",
       html: userHtml,
     })
+    console.info(JSON.stringify({ event: "email_user_sent", to: data.correo, id: userResult.data?.id }))
 
     if (contactEmail) {
       const internalHtml = buildInternalHtml(data)
       await client.emails.send({
         from: smtpFrom as string,
         to: contactEmail,
-        // @ts-expect-error reply_to is accepted by the API even if types complain.
-        reply_to: data.correo,
+        replyTo: data.correo,
         subject: "Solicitud de catálogo",
         html: internalHtml,
       })
+      console.info(JSON.stringify({ event: "email_internal_sent", to: contactEmail, fromForm: data.correo }))
     }
 
     return { sent: true, id: userResult.data?.id, userNotified: true }
