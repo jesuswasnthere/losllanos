@@ -3,8 +3,8 @@ import { validateContactForm, checkRateLimit } from "@/lib/validation"
 import type { ContactFormData, ContactResponse } from "@/lib/types"
 import { sendContactEmail } from "@/lib/email-service"
 
-const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS ?? 5)
-const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS ?? 900_000)
+const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS ?? 20)
+const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS ?? 300_000)
 
 function getClientIp(req: NextRequest): string {
   const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
