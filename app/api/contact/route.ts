@@ -3,7 +3,8 @@ import { validateContactForm, checkRateLimit } from "@/lib/validation"
 import type { ContactFormData, ContactResponse } from "@/lib/types"
 import { sendContactEmail } from "@/lib/email-service"
 
-const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS ?? 20)
+// Default: generous for production to avoid blocking normal navigation/refresh.
+const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS ?? 100)
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS ?? 300_000)
 
 function getClientIp(req: NextRequest): string {
