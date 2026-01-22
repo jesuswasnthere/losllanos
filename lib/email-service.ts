@@ -3,7 +3,8 @@ import type { ContactFormData } from "./types"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const contactEmail = process.env.CONTACT_EMAIL
-const smtpFrom = process.env.SMTP_FROM
+// Use explicit branded sender with env override
+const smtpFrom = process.env.SMTP_FROM ?? "Ventas Multirepuestos <ventas@multirepuestoslosllanos.com>"
 
 const isEmailEnabled = Boolean(resendApiKey && smtpFrom)
 
