@@ -61,7 +61,7 @@ RATE_LIMIT_WINDOW_MS=900000
 
 ## 👥 Equipo
 - Pasante: Jesús David Mariño Martínez
-- Asistencia: GitHub Copilot (GPT-5.1-Codex-Max)
+- Asistencia: Ing. Ronaldo Moreno, GitHub Copilot (GPT-5.1-Codex-Max)
 
 ## 📄 Licencia
 Uso interno del cliente. Añadir licencia formal si se requiere.
