@@ -72,7 +72,7 @@ export function Footer() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>+58 414 5341339</li>
                 <li>multirepuestoslosllanos@hotmail.com</li>
-                <li>Acarigua, Sector Campo Lindo</li>
+                <li>Araure, Sector Campo Lindo</li>
                 <li>Portuguesa, Venezuela</li>
                 <li>RIF: J-405043709</li>
               </ul>

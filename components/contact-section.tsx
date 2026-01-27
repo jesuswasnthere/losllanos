@@ -148,7 +148,7 @@ export function ContactSection() {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Dirección</h4>
                     <p className="text-muted-foreground">
-                      Acarigua, Sector Campo Lindo
+                      Araure, Sector Campo Lindo
                       <br />
                       Portuguesa, Venezuela
                     </p>

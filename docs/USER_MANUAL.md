@@ -16,7 +16,7 @@
 ## 3. Datos de contacto directos
 - Email: multirepuestoslosllanos@hotmail.com
 - Teléfonos: +58 414 5341339, +58 412 3087308
-- Dirección: Acarigua, Sector Campo Lindo, Portuguesa, Venezuela
+- Dirección: Araure, Sector Campo Lindo, Portuguesa, Venezuela
 
 ## 4. Horarios
 - Lunes a Viernes: 8:00 AM - 6:00 PM

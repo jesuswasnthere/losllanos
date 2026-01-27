@@ -15,7 +15,7 @@ const keywords = [
   "repuestos de motos",
   "distribuidora de repuestos",
   "portuguesa",
-  "acarigua",
+  "Araure",
   "multirepuestos los llanos",
   "venezuela",
   "motos",
@@ -70,7 +70,7 @@ export default function RootLayout({
     telephone: ["+58 414 5341339", "+58 412 3087308"],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Acarigua",
+      addressLocality: "Araure",
       addressRegion: "Portuguesa",
       addressCountry: "VE",
     },
@@ -86,7 +86,7 @@ export default function RootLayout({
     address: {
       "@type": "PostalAddress",
       streetAddress: "Sector Campo Lindo",
-      addressLocality: "Acarigua",
+      addressLocality: "Araure",
       addressRegion: "Portuguesa",
       addressCountry: "VE",
     },

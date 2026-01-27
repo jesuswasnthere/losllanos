@@ -8,7 +8,7 @@ Soy pasante desarrollando un sitio web corporativo para **Multi Repuestos los Ll
 - **Nombre**: Multi Repuestos los Llanos C.A.
 - **RIF**: J-405043709
 - **Actividad**: Distribuidora de Repuestos de motos a nivel nacional
-- **Ubicación**: Acarigua, Sector Campo Lindo, Portuguesa, Venezuela
+- **Ubicación**: Araure, Sector Campo Lindo, Portuguesa, Venezuela
 - **Contacto**: 
   - Email: multirepuestoslosllanos@hotmail.com
   - Teléfonos: +58 414 5341339, +58 412 3087308
@@ -756,7 +756,7 @@ Actualiza /app/layout.tsx y /app/page.tsx con:
 Información de la empresa:
 - Nombre: Multi Repuestos los Llanos C.A.
 - RIF: J-405043709
-- Ubicación: Acarigua, Portuguesa, Venezuela
+- Ubicación: Araure, Portuguesa, Venezuela
 - Actividad: Distribuidora de repuestos de motos a nivel nacional
 - Teléfonos: +58 414 5341339, +58 412 3087308
 - Email: multirepuestoslosllanos@hotmail.com
