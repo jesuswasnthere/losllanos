@@ -24,13 +24,15 @@ export function AboutSection() {
                 inquebrantable con la calidad y el servicio al cliente.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Ofrecemos una amplia gama de productos de las mejores marcas, garantizando disponibilidad inmediata y
-                precios competitivos tanto para clientes al mayor como al detal. Nuestra red de distribución cubre todo
-                el territorio nacional, asegurando que nuestros clientes reciban sus pedidos de manera rápida y segura.
+                <span className="font-semibold text-primary">Visión:</span>
+                 Mantener el liderazgo de MULTI REPUESTOS LOS LLANOS C.A en el mercado nacional e internacional, como
+                una Empresa altamente competitiva, confiable, con el mejor crecimiento y ofreciendo sus productos con
+                los mayores estándares de calidad a nivel nacional  y mundial.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Nuestro equipo de profesionales altamente capacitados está siempre dispuesto a brindar asesoría técnica
-                especializada, ayudando a nuestros clientes a encontrar exactamente lo que necesitan.
+                <span className="font-semibold text-primary">Misión:</span>
+                Somos una empresa dedicada a la distribución y comercialización de repuestos - accesorios para
+                motocicletas con amplia gama de las mejores marcas del mercado a nivel nacional y mundial.
               </p>
             </div>
 
