@@ -19,7 +19,7 @@ export function AboutSection() {
             <div className="space-y-6">
               <p className="text-lg leading-relaxed text-foreground">
                 <span className="font-semibold text-primary">Multi Repuestos los Llanos C.A.</span> es una empresa
-                venezolana con más de 10 años de experiencia en el mercado de distribución de repuestos para
+                venezolana multimarca con más de 11 años de experiencia en el mercado de distribución de repuestos para
                 motocicletas. Nos hemos consolidado como uno de los líderes del sector gracias a nuestro compromiso
                 inquebrantable con la calidad y el servicio al cliente.
               </p>
