@@ -8,9 +8,8 @@ const contactEmail = process.env.CONTACT_EMAIL
 // Use explicit branded sender with env override
 const smtpFrom = process.env.SMTP_FROM ?? "Ventas Multirepuestos <ventas@multirepuestoslosllanos.com>"
 
-const catalogFilename = "CATALAGO DE REPUESTOS AL MAYOR.pptx"
-const catalogContentType =
-  "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+const catalogFilename = "catálogo los llanos.pdf"
+const catalogContentType = "application/pdf"
 
 const isEmailEnabled = Boolean(resendApiKey && smtpFrom)
 
@@ -52,7 +51,7 @@ async function getCatalogAttachment(): Promise<CatalogAttachment | null> {
   try {
     const file = await fs.readFile(catalogPath)
     cachedCatalog = {
-      filename: "Catalogo_Multirepuestos.pptx",
+      filename: "Catalogo_Multirepuestos.pdf",
       content: file,
       contentType: catalogContentType,
     }
