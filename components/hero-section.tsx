@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Estadísticas */}
           <div className="grid grid-cols-3 gap-8 pt-12 mx-auto max-w-3xl border-t border-border mt-16">
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-primary">10+</div>
+              <div className="text-3xl font-bold text-primary">11+</div>
               <div className="text-sm text-muted-foreground">Años de Experiencia</div>
             </div>
             <div className="space-y-2">
