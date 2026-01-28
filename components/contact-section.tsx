@@ -136,8 +136,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Teléfono</h4>
-                    <p className="text-muted-foreground">+58 412 5249992</p>
-                    <p className="text-muted-foreground">+58 414 5341339</p>
+                    <p className="text-muted-foreground">+58 412 0720344</p>
+                    {/* <p className="text-muted-foreground">+58 414 5341339</p> */}
                   </div>
                 </div>
 

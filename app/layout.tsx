@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://multirepuestoslosllanos.com"
 const businessName = "Multi Repuestos los Llanos C.A."
 const description =
-  "Distribuidora nacional de repuestos de motos. Calidad, experiencia y respuesta rápida para talleres y comercios."
+  "Distribuidora nacional de repuestos y accesorios de motos. Calidad, experiencia y respuesta rápida para talleres y comercios."
 const keywords = [
   "repuestos de motos",
   "distribuidora de repuestos",
@@ -67,7 +67,7 @@ export default function RootLayout({
     name: businessName,
     url: siteUrl,
     email: "multirepuestoslosllanos@hotmail.com",
-    telephone: ["+58 414 5341339", "+58 412 3087308"],
+    telephone: ["+58 412 0720344"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Araure",
@@ -82,7 +82,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: businessName,
     url: siteUrl,
-    telephone: ["+58 414 5341339", "+58 412 3087308"],
+    telephone: ["+58 412 0720344"],
     address: {
       "@type": "PostalAddress",
       streetAddress: "Sector Campo Lindo",

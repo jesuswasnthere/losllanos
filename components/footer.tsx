@@ -12,7 +12,7 @@ export function Footer() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground">Multi Repuestos los Llanos C.A.</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Líderes en distribución de repuestos de motocicletas a nivel nacional.
+                Líderes en distribución de repuestos y accesorios de motocicletas a nivel nacional.
               </p>
             </div>
 

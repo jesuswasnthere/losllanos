@@ -19,19 +19,19 @@ export function AboutSection() {
             <div className="space-y-6">
               <p className="text-lg leading-relaxed text-foreground">
                 <span className="font-semibold text-primary">Multi Repuestos los Llanos C.A.</span> es una empresa
-                venezolana multimarca con más de 11 años de experiencia en el mercado de distribución de repuestos para
+                venezolana multimarca con más de 11 años de experiencia en el mercado de distribución de repuestos y accesorios para
                 motocicletas. Nos hemos consolidado como uno de los líderes del sector gracias a nuestro compromiso
                 inquebrantable con la calidad y el servicio al cliente.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-primary">Visión:</span>
-                 Mantener el liderazgo de MULTI REPUESTOS LOS LLANOS C.A en el mercado nacional e internacional, como
+                <span className="font-semibold text-primary">Visión: </span>
+                Mantener el liderazgo de MULTI REPUESTOS LOS LLANOS C.A en el mercado nacional e internacional, como
                 una Empresa altamente competitiva, confiable, con el mejor crecimiento y ofreciendo sus productos con
                 los mayores estándares de calidad a nivel nacional  y mundial.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-primary">Misión:</span>
-                Somos una empresa dedicada a la distribución y comercialización de repuestos - accesorios para
+                <span className="font-semibold text-primary">Misión: </span>
+                Somos una empresa dedicada a la distribución y comercialización de repuestos y accesorios para
                 motocicletas con amplia gama de las mejores marcas del mercado a nivel nacional y mundial.
               </p>
             </div>
