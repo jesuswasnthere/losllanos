@@ -1,3 +1,5 @@
+import fs from "fs/promises"
+import path from "path"
 import { Resend } from "resend"
 import type { ContactFormData } from "./types"
 
@@ -6,7 +8,19 @@ const contactEmail = process.env.CONTACT_EMAIL
 // Use explicit branded sender with env override
 const smtpFrom = process.env.SMTP_FROM ?? "Ventas Multirepuestos <ventas@multirepuestoslosllanos.com>"
 
+const catalogFilename = "CATALAGO DE REPUESTOS AL MAYOR.pptx"
+const catalogContentType =
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+
 const isEmailEnabled = Boolean(resendApiKey && smtpFrom)
+
+type CatalogAttachment = {
+  filename: string
+  content: Buffer
+  contentType: string
+}
+
+let cachedCatalog: CatalogAttachment | null = null
 
 function getResendClient() {
   if (!resendApiKey) return null
@@ -25,8 +39,28 @@ function buildUserHtml() {
   return `
   <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
     <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Hola 👋</td></tr>
-    <tr><td style="padding:4px 0;">Gracias por tu interés. Pronto te enviaremos el catálogo actualizado.</td></tr>
+    <tr><td style="padding:4px 0;">Adjuntamos nuestro catálogo actualizado de productos y promociones.</td></tr>
+    <tr><td style="padding:4px 0;">Si tienes dudas o necesitas una cotización personalizada, respóndenos a este correo.</td></tr>
   </table>`
+}
+
+async function getCatalogAttachment(): Promise<CatalogAttachment | null> {
+  if (cachedCatalog) return cachedCatalog
+
+  const catalogPath = path.join(process.cwd(), "docs", catalogFilename)
+
+  try {
+    const file = await fs.readFile(catalogPath)
+    cachedCatalog = {
+      filename: "Catalogo_Multirepuestos.pptx",
+      content: file,
+      contentType: catalogContentType,
+    }
+    return cachedCatalog
+  } catch (error) {
+    console.error(JSON.stringify({ event: "catalog_attachment_missing", path: catalogPath, error }))
+    return null
+  }
 }
 
 function escapeHtml(input: string) {
@@ -51,13 +85,16 @@ export async function sendContactEmail(data: ContactFormData) {
 
   try {
     const userHtml = buildUserHtml()
+    const catalogAttachment = await getCatalogAttachment()
     const { data: userData, error: userError } = await client.emails.send({
       from: smtpFrom as string,
       to: data.correo,
       replyTo: contactEmail || smtpFrom,
-      subject: "Hola, gracias por tu interés",
+      subject: "Catálogo solicitado - Multi Repuestos",
       html: userHtml,
-      text: "Hola, gracias por tu interés. Pronto te enviaremos el catálogo actualizado.",
+      text:
+        "Hola, gracias por tu interés. Adjuntamos nuestro catálogo actualizado. Si necesitas una cotización, responde a este correo.",
+      attachments: catalogAttachment ? [catalogAttachment] : undefined,
     })
 
     if (userError) {

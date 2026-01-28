@@ -70,7 +70,7 @@ export function Footer() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>+58 414 5341339</li>
+                <li>+58 412 0720344</li>
                 <li>multirepuestoslosllanos@hotmail.com</li>
                 <li>Araure, Sector Campo Lindo</li>
                 <li>Portuguesa, Venezuela</li>
