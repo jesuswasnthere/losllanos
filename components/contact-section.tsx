@@ -103,7 +103,7 @@ export function ContactSection() {
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">Recibe nuestro catálogo</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Déjanos tu correo y te enviaremos el catálogo actualizado con nuestros productos y promociones.
+              Déjanos tu correo y te enviaremos el catálogo actualizado con nuestros productos.
             </p>
           </div>
 

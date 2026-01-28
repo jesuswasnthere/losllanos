@@ -38,7 +38,7 @@ function buildUserHtml() {
   return `
   <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
     <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Hola 👋</td></tr>
-    <tr><td style="padding:4px 0;">Adjuntamos nuestro catálogo actualizado de productos y promociones.</td></tr>
+    <tr><td style="padding:4px 0;">Adjuntamos nuestro catálogo actualizado de productos.</td></tr>
     <tr><td style="padding:4px 0;">Si tienes dudas o necesitas una cotización personalizada, respóndenos a este correo.</td></tr>
   </table>`
 }
