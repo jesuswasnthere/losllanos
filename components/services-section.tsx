@@ -39,7 +39,7 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="servicios" className="py-24 bg-muted/30">
+    <section id="servicios" className="py-24 bg-muted/30 scroll-mt-32">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           {/* Encabezado de sección */}

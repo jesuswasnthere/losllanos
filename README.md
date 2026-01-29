@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./public/logo.svg" alt="Multi Repuestos los Llanos" width="320" />
+	<img src="./public/logo%20los%20llanos.jpg" alt="Multi Repuestos los Llanos" width="320" />
 </p>
 
 <p align="center">

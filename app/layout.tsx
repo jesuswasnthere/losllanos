@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Header } from "@/components/header"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
@@ -107,6 +108,7 @@ export default function RootLayout({
         >
           Saltar al contenido principal
         </a>
+        <Header />
         {children}
         <script
           type="application/ld+json"
