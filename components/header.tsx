@@ -5,7 +5,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Facebook, Instagram, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react"
+import {
+  ChevronDown,
+  ChevronUp,
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Phone,
+  X,
+} from "lucide-react"
 
 const contactInfo = {
   phoneMain: "+58 412 0720344",
@@ -34,16 +45,39 @@ const socialLinks = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
   const sanitizedPhone = contactInfo.phoneMain.replace(/\s+/g, "")
   const whatsappNumber = contactInfo.phoneMain.replace(/\D/g, "")
 
   const handleNavClick = () => setMenuOpen(false)
+  const handleCollapse = () => {
+    setMenuOpen(false)
+    setCollapsed(true)
+  }
 
   return (
-    <header
-      className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
-      aria-label="Barra de navegación principal"
-    >
+    <>
+      {collapsed && (
+        <div className="fixed left-1/2 top-3 z-60 -translate-x-1/2 rounded-full border border-border bg-card/95 px-3 py-1.5 shadow-md backdrop-blur supports-backdrop-filter:bg-card/80">
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+            onClick={() => setCollapsed(false)}
+            aria-label="Mostrar barra de navegación"
+          >
+            <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            Mostrar barra
+          </button>
+        </div>
+      )}
+
+      <header
+        className={cn(
+          "sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 transition-transform duration-300",
+          collapsed ? "-translate-y-full" : "translate-y-0"
+        )}
+        aria-label="Barra de navegación principal"
+      >
       <div className="border-b border-border/70 bg-muted/60">
         <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-2 text-sm text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4">
@@ -127,6 +161,22 @@ export function Header() {
           </Button>
           <button
             type="button"
+            className="hidden md:inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted"
+            onClick={handleCollapse}
+            aria-label="Ocultar barra de navegación"
+          >
+            <ChevronUp className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
+            onClick={handleCollapse}
+            aria-label="Ocultar barra de navegación"
+          >
+            <ChevronUp className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
             className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
@@ -198,6 +248,7 @@ export function Header() {
           </nav>
         </div>
       ) : null}
-    </header>
+      </header>
+    </>
   )
 }
