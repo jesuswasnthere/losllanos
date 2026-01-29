@@ -58,7 +58,7 @@ export function Header() {
   return (
     <>
       {collapsed && (
-        <div className="fixed left-1/2 top-3 z-60 -translate-x-1/2 rounded-full border border-border bg-card/95 px-3 py-1.5 shadow-md backdrop-blur supports-backdrop-filter:bg-card/80">
+        <div className="fixed left-1/2 top-3 z-[60] -translate-x-1/2 rounded-full border border-border bg-card/95 px-3 py-1.5 shadow-md backdrop-blur supports-[backdrop-filter]:bg-card/80">
           <button
             type="button"
             className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
@@ -73,17 +73,17 @@ export function Header() {
 
       <header
         className={cn(
-          "sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 transition-transform duration-300",
+          "sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 transition-transform duration-300",
           collapsed ? "-translate-y-full" : "translate-y-0"
         )}
         aria-label="Barra de navegación principal"
       >
       <div className="border-b border-border/70 bg-muted/60">
-        <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-2 text-sm text-muted-foreground">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="container mx-auto flex items-center justify-between gap-3 px-3 py-2 text-xs sm:text-sm text-muted-foreground flex-nowrap">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-nowrap">
             <a
               href={`tel:${sanitizedPhone}`}
-              className="inline-flex items-center gap-2 font-medium text-foreground transition-colors hover:text-primary"
+              className="inline-flex items-center gap-2 font-medium text-foreground transition-colors hover:text-primary shrink-0"
             >
               <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
               <span>{contactInfo.phoneMain}</span>
@@ -91,14 +91,14 @@ export function Header() {
 
             <a
               href={`mailto:${contactInfo.email}`}
-              className="inline-flex items-center gap-2 transition-colors hover:text-primary"
+              className="inline-flex items-center gap-2 transition-colors hover:text-primary shrink-0"
             >
               <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
               <span className="hidden sm:inline">{contactInfo.email}</span>
               <span className="sm:hidden">Correo</span>
             </a>
 
-            <span className="hidden lg:inline-flex items-center gap-2">
+            <span className="hidden lg:inline-flex items-center gap-2 shrink-0">
               <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
               <span>{contactInfo.location}</span>
             </span>
@@ -109,7 +109,7 @@ export function Header() {
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 font-semibold text-foreground transition-colors hover:bg-primary/15"
+              className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 font-semibold text-foreground transition-colors hover:bg-primary/15 shrink-0"
             >
               <MessageCircle className="h-4 w-4 text-primary" aria-hidden="true" />
               <span className="text-sm">WhatsApp</span>
@@ -121,14 +121,14 @@ export function Header() {
         </div>
       </div>
 
-      <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-4">
+      <div className="container mx-auto flex items-center justify-between gap-3 px-3 py-3 sm:gap-6 sm:px-4 sm:py-4">
         <Link href="/" className="flex items-center gap-3" aria-label="Ir al inicio">
-          <div className="relative h-12 w-36 md:w-44">
+          <div className="relative h-11 w-32 sm:h-12 sm:w-44">
             <Image
               src="/logo%20los%20llanos.jpg"
               alt="Logo de Multi Repuestos los Llanos"
               fill
-              sizes="(min-width: 1280px) 176px, (min-width: 1024px) 168px, 140px"
+              sizes="(min-width: 1280px) 176px, (min-width: 1024px) 168px, 128px"
               className="object-contain drop-shadow-sm"
               priority
             />
@@ -152,11 +152,11 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button variant="outline" size="sm" asChild className="hidden md:inline-flex">
             <Link href="/#servicios">Servicios</Link>
           </Button>
-          <Button size="sm" asChild>
+          <Button size="sm" asChild className="px-3 sm:px-4 h-10 sm:h-10">
             <Link href="/#contacto">Recibir catálogo</Link>
           </Button>
           <button
