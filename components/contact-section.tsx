@@ -8,14 +8,13 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react"
+import { Facebook, Instagram, Mail, MapPin, Phone, Send } from "lucide-react"
 
 type FormStatus = "idle" | "sending" | "success" | "error"
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 
 const socialLinks = [
-  { href: "https://wa.me/584120720344", label: "WhatsApp", icon: MessageCircle },
   { href: "https://www.facebook.com/multirepuestoslosllanosca", label: "Facebook", icon: Facebook },
   {
     href: "https://www.instagram.com/multirepuestoslosllanos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
@@ -182,6 +181,7 @@ export function ContactSection() {
                       </Link>
                     )
                   })}
+                  <span className="ml-1 text-sm font-semibold text-muted-foreground">Redes sociales</span>
                 </div>
               </div>
 
