@@ -153,6 +153,26 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <Link
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    "inline-flex size-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors",
+                    "hover:border-primary/50 hover:text-primary"
+                  )}
+                  aria-label={social.label}
+                >
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              )
+            })}
+          </div>
           <Button variant="outline" size="sm" asChild className="hidden md:inline-flex">
             <Link href="/#servicios">Servicios</Link>
           </Button>
