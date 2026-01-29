@@ -79,8 +79,8 @@ export function Header() {
         aria-label="Barra de navegación principal"
       >
       <div className="border-b border-border/70 bg-muted/60">
-        <div className="container mx-auto flex items-center justify-between gap-3 px-3 py-2 text-xs sm:text-sm text-muted-foreground flex-nowrap">
-          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-nowrap">
+        <div className="container mx-auto flex items-center justify-between gap-2 px-2.5 py-2 text-xs sm:text-sm text-muted-foreground flex-nowrap">
+          <div className="flex items-center gap-2.5 sm:gap-4 min-w-0 flex-nowrap">
             <a
               href={`tel:${sanitizedPhone}`}
               className="inline-flex items-center gap-2 font-medium text-foreground transition-colors hover:text-primary shrink-0"
@@ -104,7 +104,7 @@ export function Header() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <Link
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
@@ -121,9 +121,9 @@ export function Header() {
         </div>
       </div>
 
-      <div className="container mx-auto flex items-center justify-between gap-3 px-3 py-3 sm:gap-6 sm:px-4 sm:py-4">
+      <div className="container mx-auto flex items-center justify-between gap-2.5 px-2.5 py-3 sm:gap-6 sm:px-4 sm:py-4">
         <Link href="/" className="flex items-center gap-3" aria-label="Ir al inicio">
-          <div className="relative h-11 w-32 sm:h-12 sm:w-44">
+          <div className="relative h-10 w-30 sm:h-12 sm:w-44">
             <Image
               src="/logo%20los%20llanos.jpg"
               alt="Logo de Multi Repuestos los Llanos"
@@ -152,16 +152,16 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" asChild className="hidden md:inline-flex">
             <Link href="/#servicios">Servicios</Link>
           </Button>
-          <Button size="sm" asChild className="px-3 sm:px-4 h-10 sm:h-10">
+          <Button size="sm" asChild className="px-3 h-9 sm:px-4 sm:h-10">
             <Link href="/#contacto">Recibir catálogo</Link>
           </Button>
           <button
             type="button"
-            className="hidden md:inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted"
+            className="hidden md:inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted"
             onClick={handleCollapse}
             aria-label="Ocultar barra de navegación"
           >
@@ -169,7 +169,7 @@ export function Header() {
           </button>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
             onClick={handleCollapse}
             aria-label="Ocultar barra de navegación"
           >
@@ -177,7 +177,7 @@ export function Header() {
           </button>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-foreground transition-colors hover:bg-muted md:hidden"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((prev) => !prev)}
