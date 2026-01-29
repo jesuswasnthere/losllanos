@@ -58,7 +58,7 @@ export function Header() {
   return (
     <>
       {collapsed && (
-        <div className="fixed left-1/2 top-3 z-[60] -translate-x-1/2 rounded-full border border-border bg-card/95 px-3 py-1.5 shadow-md backdrop-blur supports-[backdrop-filter]:bg-card/80">
+        <div className="fixed left-1/2 top-3 z-60 -translate-x-1/2 rounded-full border border-border bg-card/95 px-3 py-1.5 shadow-md backdrop-blur supports-backdrop-filter:bg-card/80">
           <button
             type="button"
             className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
@@ -73,7 +73,7 @@ export function Header() {
 
       <header
         className={cn(
-          "sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 transition-transform duration-300",
+          "sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 transition-transform duration-300",
           collapsed ? "-translate-y-full" : "translate-y-0"
         )}
         aria-label="Barra de navegación principal"
