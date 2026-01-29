@@ -4,14 +4,25 @@ import type React from "react"
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react"
 
 type FormStatus = "idle" | "sending" | "success" | "error"
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+
+const socialLinks = [
+  { href: "https://wa.me/584120720344", label: "WhatsApp", icon: MessageCircle },
+  { href: "https://www.facebook.com/multirepuestoslosllanosca", label: "Facebook", icon: Facebook },
+  {
+    href: "https://www.instagram.com/multirepuestoslosllanos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    label: "Instagram",
+    icon: Instagram,
+  },
+]
 
 export function ContactSection() {
   const [status, setStatus] = useState<FormStatus>("idle")
@@ -153,6 +164,24 @@ export function ContactSection() {
                       Portuguesa, Venezuela
                     </p>
                   </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon
+                    return (
+                      <Link
+                        key={social.href}
+                        href={social.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                        aria-label={social.label}
+                      >
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </Link>
+                    )
+                  })}
                 </div>
               </div>
 
