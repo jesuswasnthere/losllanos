@@ -17,7 +17,7 @@ export function HeroSection() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 to-black/75" aria-hidden="true" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/55 to-black/75" aria-hidden="true" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-20 text-center text-white">
