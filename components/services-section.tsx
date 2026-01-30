@@ -10,6 +10,7 @@ export function ServicesSection() {
       icon: Package,
       title: "Amplio Catálogo",
       description: "Más de 5,000 referencias de repuestos para todas las marcas y modelos de motocicletas del mercado.",
+      href: "/catalogo",
     },
     {
       icon: Truck,
