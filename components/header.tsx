@@ -98,10 +98,16 @@ export function Header() {
               <span className="sm:hidden">Correo</span>
             </a>
 
-            <span className="hidden lg:inline-flex items-center gap-2 shrink-0">
+            <Link
+              href="https://maps.app.goo.gl/6g4hESVYo9Frpep2A"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden lg:inline-flex items-center gap-2 shrink-0 rounded-md px-2 py-1 transition-colors hover:bg-primary/10 hover:text-primary"
+              aria-label="Abrir ubicación en Google Maps"
+            >
               <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
               <span>{contactInfo.location}</span>
-            </span>
+            </Link>
           </div>
 
           <div className="flex items-center gap-2.5">
