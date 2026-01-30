@@ -110,7 +110,7 @@ export function ContactSection() {
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           {/* Encabezado de sección */}
-          <div className="mb-16 text-center">
+          <div className="mb-16 text-center" data-aos="fade-up">
             <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">Recibe nuestro catálogo</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Déjanos tu correo y te enviaremos el catálogo actualizado con nuestros productos.
