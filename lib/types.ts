@@ -2,10 +2,15 @@ export interface ContactFormData {
   correo: string
 }
 
-export interface ValidationResult {
+export interface SupportMessageData {
+  correo: string
+  mensaje: string
+}
+
+export interface ValidationResult<T = ContactFormData> {
   valid: boolean
   errors: Record<string, string>
-  sanitizedData: ContactFormData
+  sanitizedData: T
 }
 
 export interface RateLimitInfo {

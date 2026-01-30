@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import path from "path"
 import { Resend } from "resend"
-import type { ContactFormData } from "./types"
+import type { ContactFormData, SupportMessageData } from "./types"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const contactEmail = process.env.CONTACT_EMAIL
@@ -31,6 +31,25 @@ function buildInternalHtml(data: ContactFormData) {
   <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
     <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Nueva solicitud de catálogo</td></tr>
     <tr><td style="padding:4px 0;"><strong>Correo:</strong> ${escapeHtml(data.correo)}</td></tr>
+  </table>`
+}
+
+function buildSupportInternalHtml(data: SupportMessageData) {
+  return `
+  <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
+    <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Nueva consulta de asesoria</td></tr>
+    <tr><td style="padding:4px 0;"><strong>Correo:</strong> ${escapeHtml(data.correo)}</td></tr>
+    <tr><td style="padding:8px 0 0;"><strong>Mensaje:</strong></td></tr>
+    <tr><td style="padding:4px 0;white-space:pre-wrap;">${escapeHtml(data.mensaje)}</td></tr>
+  </table>`
+}
+
+function buildSupportUserHtml() {
+  return `
+  <table style="font-family:Arial,sans-serif;font-size:14px;color:#111;padding:16px;border-collapse:collapse;width:100%;max-width:640px;">
+    <tr><td style="padding:8px 0;font-size:16px;font-weight:700;">Recibimos tu mensaje</td></tr>
+    <tr><td style="padding:4px 0;">Nuestro equipo lo revisara y te respondera pronto.</td></tr>
+    <tr><td style="padding:4px 0;">Si necesitas una respuesta urgente, escribenos por Telegram en t.me/MRLLCA.</td></tr>
   </table>`
 }
 
@@ -124,5 +143,59 @@ export async function sendContactEmail(data: ContactFormData) {
   } catch (error) {
     console.error(JSON.stringify({ event: "email_send_error", error }))
     return { sent: false, error: "Fallo al enviar el correo" }
+  }
+}
+
+export async function sendSupportMessageEmail(data: SupportMessageData) {
+  if (!isEmailEnabled) {
+    console.warn(JSON.stringify({ event: "support_email_disabled", reason: "Missing RESEND_API_KEY or SMTP_FROM" }))
+    return { sent: false, skipped: true }
+  }
+
+  const client = getResendClient()
+  if (!client) {
+    return { sent: false, error: "No se pudo inicializar el cliente de email." }
+  }
+
+  try {
+    const userHtml = buildSupportUserHtml()
+    const internalHtml = buildSupportInternalHtml(data)
+
+    if (contactEmail) {
+      const { error: internalError } = await client.emails.send({
+        from: smtpFrom as string,
+        to: contactEmail,
+        replyTo: data.correo,
+        subject: "Nueva consulta de asesoria",
+        html: internalHtml,
+        text: `Nueva consulta de asesoria\nCorreo: ${data.correo}\nMensaje: ${data.mensaje}`,
+      })
+
+      if (internalError) {
+        console.error(JSON.stringify({ event: "support_internal_error", to: contactEmail, error: internalError }))
+        return { sent: false, error: "No pudimos notificar al equipo." }
+      }
+    }
+
+    const { error: userError, data: userData } = await client.emails.send({
+      from: smtpFrom as string,
+      to: data.correo,
+      replyTo: contactEmail || smtpFrom,
+      subject: "Recibimos tu consulta - Multi Repuestos",
+      html: userHtml,
+      text: "Recibimos tu mensaje y te responderemos pronto. Para atencion inmediata, contactanos en Telegram: t.me/MRLLCA.",
+    })
+
+    if (userError) {
+      console.error(JSON.stringify({ event: "support_user_error", to: data.correo, error: userError }))
+      return { sent: false, error: "No pudimos enviar la confirmacion." }
+    }
+
+    console.info(JSON.stringify({ event: "support_user_sent", to: data.correo, id: userData?.id }))
+
+    return { sent: true, id: userData?.id }
+  } catch (error) {
+    console.error(JSON.stringify({ event: "support_email_send_error", error }))
+    return { sent: false, error: "Fallo al enviar el mensaje." }
   }
 }

@@ -1,4 +1,4 @@
-import { ContactFormData, RateLimitCheckResult, RateLimitInfo, ValidationResult } from "./types"
+import { ContactFormData, RateLimitCheckResult, RateLimitInfo, SupportMessageData, ValidationResult } from "./types"
 
 const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 
@@ -28,6 +28,37 @@ export function validateContactForm(data: ContactFormData): ValidationResult {
     errors.correo = "El correo no debe exceder 120 caracteres."
   } else if (!validateEmail(sanitized.correo)) {
     errors.correo = "Ingresa un correo válido."
+  }
+
+  return {
+    valid: Object.keys(errors).length === 0,
+    errors,
+    sanitizedData: sanitized,
+  }
+}
+
+export function validateSupportMessageForm(data: SupportMessageData): ValidationResult<SupportMessageData> {
+  const sanitized: SupportMessageData = {
+    correo: sanitizeInput(data.correo),
+    mensaje: sanitizeInput(data.mensaje),
+  }
+
+  const errors: Record<string, string> = {}
+
+  if (!sanitized.correo) {
+    errors.correo = "El correo es requerido."
+  } else if (sanitized.correo.length > 120) {
+    errors.correo = "El correo no debe exceder 120 caracteres."
+  } else if (!validateEmail(sanitized.correo)) {
+    errors.correo = "Ingresa un correo válido."
+  }
+
+  if (!sanitized.mensaje) {
+    errors.mensaje = "El mensaje es requerido."
+  } else if (sanitized.mensaje.length < 10) {
+    errors.mensaje = "Cuéntanos un poco más sobre tu necesidad (mínimo 10 caracteres)."
+  } else if (sanitized.mensaje.length > 1500) {
+    errors.mensaje = "El mensaje no debe exceder 1500 caracteres."
   }
 
   return {
