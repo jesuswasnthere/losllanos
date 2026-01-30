@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Header } from "@/components/header"
+import { AOSProvider } from "@/components/aos-provider"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
@@ -108,6 +109,7 @@ export default function RootLayout({
         >
           Saltar al contenido principal
         </a>
+        <AOSProvider />
         <Header />
         {children}
         <script
