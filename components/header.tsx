@@ -83,7 +83,7 @@ export function Header() {
           <div className="flex items-center gap-2.5 sm:gap-4 min-w-0 flex-nowrap">
             <a
               href={`tel:${sanitizedPhone}`}
-              className="inline-flex items-center gap-2 font-medium text-foreground transition-colors hover:text-primary shrink-0"
+              className="inline-flex items-center gap-2 font-medium text-foreground transition-colors hover:text-primary hover:bg-primary/10 rounded-md px-2 py-1 shrink-0"
             >
               <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
               <span>{contactInfo.phoneMain}</span>
@@ -91,7 +91,7 @@ export function Header() {
 
             <a
               href={`mailto:${contactInfo.email}`}
-              className="inline-flex items-center gap-2 transition-colors hover:text-primary shrink-0"
+              className="inline-flex items-center gap-2 transition-colors hover:text-primary hover:bg-primary/10 rounded-md px-2 py-1 shrink-0"
             >
               <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
               <span className="hidden sm:inline">{contactInfo.email}</span>
