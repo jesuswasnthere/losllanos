@@ -1,12 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { FileText, Package, Truck, ShieldCheck, CheckCircle2, MessageCircle, X } from "lucide-react"
+import { Package, Truck, ShieldCheck, CheckCircle2, MessageCircle, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 const highlights = [
   {
@@ -27,19 +24,6 @@ const highlights = [
 ]
 
 export default function CatalogoPage() {
-  const [showWizard, setShowWizard] = useState(false)
-  const [email, setEmail] = useState("")
-
-  const openWizard = () => setShowWizard(true)
-  const closeWizard = () => setShowWizard(false)
-
-  const handleSendEmail = () => {
-    if (!email) return
-    const mailto = `mailto:multirepuestoslosllanos@hotmail.com?subject=Solicitud%20de%20cat%C3%A1logo&body=Correo:%20${encodeURIComponent(email)}%0A%0AIndica%20marca%2C%20modelo%20y%20a%C3%B1o%20de%20la%20moto%20para%20acelerar%20tu%20cotizaci%C3%B3n.`
-    window.location.href = mailto
-    setShowWizard(false)
-  }
-
   return (
     <main className="min-h-screen bg-background" role="main">
       <section className="relative overflow-hidden border-b border-border/60">
@@ -50,9 +34,9 @@ export default function CatalogoPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-40"
+            className="object-cover opacity-45"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/55 to-background" aria-hidden="true" />
+          <div className="absolute inset-0 bg-linear-to-b from-background/65 via-background/45 to-background" aria-hidden="true" />
         </div>
         <div className="relative container mx-auto px-4 py-20 sm:py-28" data-aos="fade-up">
           <div className="max-w-3xl">
@@ -67,8 +51,10 @@ export default function CatalogoPage() {
                   <MessageCircle className="mr-2 h-5 w-5" /> Pedir por WhatsApp
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" type="button" onClick={openWizard}>
-                <FileText className="mr-2 h-5 w-5" /> Solicitar por correo
+              <Button asChild size="lg" variant="outline">
+                <Link href="https://t.me/MRLLCA" target="_blank" rel="noreferrer" aria-label="Abrir Telegram">
+                  <Send className="mr-2 h-5 w-5" /> Escribir por Telegram
+                </Link>
               </Button>
             </div>
             <p className="mt-3 text-sm text-muted-foreground">Respuesta rápida en horario laboral.</p>
@@ -110,7 +96,7 @@ export default function CatalogoPage() {
             </div>
 
             <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm" data-aos="fade-up" data-aos-delay="200">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5" aria-hidden="true" />
+              <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-primary/5" aria-hidden="true" />
               <div className="relative p-8 space-y-4">
                 <h3 className="text-xl font-semibold text-card-foreground">¿Listo para recibirlo?</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -122,8 +108,10 @@ export default function CatalogoPage() {
                       <MessageCircle className="mr-2 h-5 w-5" /> Ir a WhatsApp
                     </Link>
                   </Button>
-                  <Button variant="outline" type="button" onClick={openWizard}>
-                    Pedir por correo
+                  <Button asChild variant="outline">
+                    <Link href="https://t.me/MRLLCA" target="_blank" rel="noreferrer">
+                      Escribir por Telegram
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -131,50 +119,6 @@ export default function CatalogoPage() {
           </div>
         </div>
       </section>
-
-      {showWizard ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4" role="dialog" aria-modal="true">
-          <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-2xl" data-aos="fade-up">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Catálogo por correo</p>
-                <h2 className="mt-2 text-xl font-bold text-card-foreground">Déjanos tu correo</h2>
-                <p className="text-sm text-muted-foreground mt-1">Te enviaremos el PDF actualizado y opciones de disponibilidad.</p>
-              </div>
-              <button
-                type="button"
-                onClick={closeWizard}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition hover:text-foreground hover:border-primary/60"
-                aria-label="Cerrar"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="mt-6 space-y-3">
-              <Label htmlFor="catalogo-email">Correo electrónico</Label>
-              <Input
-                id="catalogo-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@email.com"
-                required
-              />
-              <p className="text-xs text-muted-foreground">Recibirás un correo con nuestro catálogo entre 2-5 minutos.</p>
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <Button variant="outline" type="button" onClick={closeWizard}>
-                Cancelar
-              </Button>
-              <Button type="button" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleSendEmail} disabled={!email}>
-                Enviar solicitud
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : null}
     </main>
   )
 }

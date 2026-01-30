@@ -72,6 +72,11 @@ export function Footer() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>+58 412 0720344</li>
                 <li>multirepuestoslosllanos@hotmail.com</li>
+                <li>
+                  <Link href="https://t.me/MRLLCA" target="_blank" rel="noreferrer" className="hover:text-primary">
+                    Telegram: t.me/MRLLCA
+                  </Link>
+                </li>
                 <li>Araure, Sector Campo Lindo</li>
                 <li>Portuguesa, Venezuela</li>
                 <li>RIF: J-405043709</li>

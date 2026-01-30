@@ -21,6 +21,7 @@ const socialLinks = [
     label: "Instagram",
     icon: Instagram,
   },
+  { href: "https://t.me/MRLLCA", label: "Telegram", icon: Send },
 ]
 
 export function ContactSection() {
@@ -137,6 +138,18 @@ export function ContactSection() {
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
                     <p className="text-muted-foreground">multirepuestoslosllanos@hotmail.com</p>
                     {/* <p className="text-muted-foreground">multirepuestoslosllanos@hotmail.com</p> */}
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Send className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">Telegram</h4>
+                    <Link href="https://t.me/MRLLCA" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">
+                      t.me/MRLLCA
+                    </Link>
                   </div>
                 </div>
 

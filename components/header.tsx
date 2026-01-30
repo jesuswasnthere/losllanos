@@ -15,6 +15,7 @@ import {
   Menu,
   MessageCircle,
   Phone,
+  Send,
   X,
 } from "lucide-react"
 
@@ -41,6 +42,7 @@ const socialLinks = [
     label: "Instagram",
     icon: Instagram,
   },
+  { href: "https://t.me/MRLLCA", label: "Telegram", icon: Send },
 ]
 
 export function Header() {

@@ -16,6 +16,7 @@ export function ServicesSection() {
       icon: Truck,
       title: "Distribución Nacional",
       description: "Entregas a todo el país con nuestra red logística eficiente y confiable.",
+      href: "/distribucion",
     },
     {
       icon: Headset,
@@ -37,6 +38,7 @@ export function ServicesSection() {
       icon: Clock,
       title: "Atención Continua",
       description: "Servicio al cliente disponible para atender tus consultas y pedidos de manera ágil, a toda hora en todas nuestras redes sociales y WhatsApp.",
+      href: "/atencion",
     },
   ]
 
