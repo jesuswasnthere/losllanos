@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { MessageCircle, Mail, Clock, ShieldCheck, Phone, Send } from "lucide-react"
+import { MessageCircle, Clock, ShieldCheck, Phone, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const touchpoints = [
@@ -14,12 +14,6 @@ const touchpoints = [
     href: "https://t.me/MRLLCA",
     icon: Send,
     desc: "Canal alternativo para consultas y pedidos.",
-  },
-  {
-    label: "Correo de soporte",
-    href: "mailto:multirepuestoslosllanos@hotmail.com",
-    icon: Mail,
-    desc: "Envíanos detalles de tus requerimientos y te respondemos en horario laboral.",
   },
   {
     label: "Llamada directa",
