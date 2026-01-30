@@ -9,10 +9,11 @@ export function HeroSection() {
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/fondo_los_llanos.jpg"
+          src="/fondo_los_llanos.webp"
           alt="Moto y repuestos de fondo"
           fill
           priority
+          quality={100}
           sizes="100vw"
           className="object-cover"
         />
