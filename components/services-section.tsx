@@ -20,6 +20,7 @@ export function ServicesSection() {
       icon: Headset,
       title: "Asesoría Especializada",
       description: "Equipo técnico capacitado para ayudarte a encontrar el repuesto exacto que necesitas.",
+      href: "/asesoria",
     },
     {
       icon: ShieldCheck,
@@ -55,12 +56,11 @@ export function ServicesSection() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => {
               const Icon = service.icon
-              return (
+              const cardContent = (
                 <Card
-                  key={index}
-                  className="group transition-all hover:shadow-lg hover:border-primary/50 hover:-translate-y-1"
+                  className="group transition-all hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 h-full"
                 >
-                  <CardHeader className="space-y-4">
+                  <CardHeader className="space-y-4 h-full">
                     <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                       <Icon className="h-7 w-7 text-primary" />
                     </div>
@@ -70,6 +70,21 @@ export function ServicesSection() {
                     </div>
                   </CardHeader>
                 </Card>
+              )
+
+              return service.href ? (
+                <Link
+                  key={index}
+                  href={service.href}
+                  className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  aria-label={`${service.title} - ver más`}
+                >
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={index} className="h-full">
+                  {cardContent}
+                </div>
               )
             })}
           </div>
