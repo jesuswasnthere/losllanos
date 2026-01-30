@@ -28,9 +28,9 @@ const contactInfo = {
 
 const navLinks = [
   { href: "/#main-content", label: "Inicio" },
-  { href: "/#nosotros", label: "Nosotros" },
   { href: "/#servicios", label: "Servicios" },
   { href: "/#contacto", label: "Contáctanos" },
+  { href: "/nosotros", label: "Nosotros" },
 ]
 
 const socialLinks = [

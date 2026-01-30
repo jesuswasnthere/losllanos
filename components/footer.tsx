@@ -30,7 +30,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/#nosotros"
+                    href="/nosotros"
                     className="text-muted-foreground hover:text-primary visited:text-muted-foreground transition-colors"
                   >
                     Sobre Nosotros

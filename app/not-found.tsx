@@ -27,7 +27,7 @@ export default function NotFound() {
               <Wrench className="mr-2 h-4 w-4" /> Servicios
             </Button>
           </Link>
-          <Link href="/#nosotros">
+          <Link href="/nosotros">
             <Button className="w-full" variant="ghost">
               <Info className="mr-2 h-4 w-4" /> Sobre nosotros
             </Button>
