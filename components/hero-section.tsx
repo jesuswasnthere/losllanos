@@ -5,14 +5,15 @@ import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-linear-to-br from-muted via-background to-muted">
-      {/* Patrón de fondo sutil */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,oklch(0.85_0_0)_1px,transparent_1px)] bg-size-[40px_40px] opacity-20" />
+    <section
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('/fondo_los_llanos.jpg')" }}
+    >
 
-      <div className="container relative z-10 mx-auto px-4 py-20 text-center">
+      <div className="container relative z-10 mx-auto px-4 py-20 text-center text-white">
         <div className="mx-auto max-w-4xl space-y-8">
           {/* Etiqueta superior */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm text-white">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -21,12 +22,12 @@ export function HeroSection() {
           </div>
 
           {/* Título principal */}
-          <h1 className="font-sans text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-balance">
+          <h1 className="font-sans text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl text-balance">
             Multi Repuestos los Llanos C.A.
           </h1>
 
           {/* Subtítulo */}
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl text-pretty">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl text-pretty">
             Líderes en la distribución de repuestos y accesorios de motos a nivel nacional. Calidad garantizada, experiencia
             comprobada y compromiso total con nuestros clientes, con atención tanto al mayor como al detal.
           </p>
@@ -36,24 +37,30 @@ export function HeroSection() {
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6" aria-label="Ir a contacto">
               <Link href="/#contacto">Contáctanos</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 text-base px-8 py-6 bg-transparent" aria-label="Ver servicios">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-2 text-base px-8 py-6 bg-transparent text-white border-white hover:bg-white/10"
+              aria-label="Ver servicios"
+            >
               <Link href="/#servicios">Nuestros Servicios</Link>
             </Button>
           </div>
 
           {/* Estadísticas */}
-          <div className="grid grid-cols-3 gap-8 pt-12 mx-auto max-w-3xl border-t border-border mt-16">
+          <div className="grid grid-cols-3 gap-8 pt-12 mx-auto max-w-3xl border-t border-white/20 mt-16 text-white">
             <div className="space-y-2">
               <div className="text-3xl font-bold text-primary">11+</div>
-              <div className="text-sm text-muted-foreground">Años de Experiencia</div>
+              <div className="text-sm text-white/80">Años de Experiencia</div>
             </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-primary">5000+</div>
-              <div className="text-sm text-muted-foreground">Productos Disponibles</div>
+              <div className="text-sm text-white/80">Productos Disponibles</div>
             </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-primary">100%</div>
-              <div className="text-sm text-muted-foreground">Cobertura Nacional</div>
+              <div className="text-sm text-white/80">Cobertura Nacional</div>
             </div>
           </div>
         </div>
