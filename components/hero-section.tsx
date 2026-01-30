@@ -1,14 +1,23 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (
-    <section
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('/fondo_los_llanos.jpg')" }}
-    >
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="/fondo_los_llanos.jpg"
+          alt="Moto y repuestos de fondo"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 to-black/75" aria-hidden="true" />
+      </div>
 
       <div className="container relative z-10 mx-auto px-4 py-20 text-center text-white">
         <div className="mx-auto max-w-4xl space-y-8">
