@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react"
 import Link from "next/link"
-import { Mail, Facebook, Instagram, Send } from "lucide-react"
+import { Mail, Facebook, Instagram, Send, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -199,8 +199,8 @@ export default function AsesoriaPage() {
           <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="150">
             <p className="text-lg font-semibold text-foreground mb-3">¿Prefieres escribirnos directo?</p>
             <Button asChild size="lg" className="px-6 bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link href="https://t.me/MRLLCA" target="_blank" rel="noreferrer">
-                <Send className="mr-2 h-5 w-5" /> Ir a Telegram
+              <Link href="https://wa.me/584120720344" target="_blank" rel="noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" /> Ir a WhatsApp
               </Link>
             </Button>
             <p className="mt-2 text-sm text-muted-foreground">Respondemos rapido en horario laboral.</p>
