@@ -5,7 +5,7 @@ import Link from "next/link"
 export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12" data-aos="fade-up">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {/* Columna 1 - Empresa */}
@@ -80,7 +80,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="mt-12 pt-8 border-t border-border">
+          <div className="mt-12 pt-8 border-t border-border" data-aos="fade-up">
             <p className="text-center text-sm text-muted-foreground">
               © {new Date().getFullYear()} Multi Repuestos los Llanos C.A. Todos los derechos reservados.
             </p>
