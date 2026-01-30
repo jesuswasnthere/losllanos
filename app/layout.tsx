@@ -49,9 +49,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo%20los%20llanos.jpg" },
+      { url: "/icon.png", type: "image/png" },
       { url: "/favicon.ico" },
     ],
+    shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },
 }
