@@ -32,6 +32,10 @@ export function ContactSection() {
     correo: "",
   })
 
+  const phoneNumber = "+58 412 0720344"
+  const phoneHref = `tel:${phoneNumber.replace(/\s+/g, "")}`
+  const mapsHref = "https://maps.app.goo.gl/6g4hESVYo9Frpep2A"
+
   const validateField = (name: "correo", value: string) => {
     if (name === "correo") {
       if (!value.trim()) return "El correo es requerido."
@@ -159,7 +163,13 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Teléfono</h4>
-                    <p className="text-muted-foreground">+58 412 0720344</p>
+                    <a
+                      href={phoneHref}
+                      className="text-muted-foreground transition-colors hover:text-primary"
+                      aria-label="Llamar a Multi Repuestos los Llanos"
+                    >
+                      {phoneNumber}
+                    </a>
                     {/* <p className="text-muted-foreground">+58 414 5341339</p> */}
                   </div>
                 </div>
@@ -170,11 +180,16 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Dirección</h4>
-                    <p className="text-muted-foreground">
-                      Araure, Sector Campo Lindo
-                      <br />
-                      Portuguesa, Venezuela
-                    </p>
+                    <Link
+                      href={mapsHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-muted-foreground transition-colors hover:text-primary"
+                      aria-label="Abrir ubicación en Google Maps"
+                    >
+                      <span className="block">Araure, Sector Campo Lindo</span>
+                      <span className="block">Portuguesa, Venezuela</span>
+                    </Link>
                   </div>
                 </div>
 
