@@ -223,7 +223,7 @@ export function ContactSection() {
               <div className="mb-6 max-w-lg mx-auto overflow-hidden rounded-lg">
                 <div className="relative aspect-4/3">
                   <Image
-                    src="/catalogo.png"
+                    src="/catalogo.gif"
                     alt="Catálogo de productos"
                     fill
                     sizes="(min-width: 1024px) 520px, 92vw"
