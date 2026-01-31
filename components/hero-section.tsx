@@ -2,21 +2,46 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
+const heroSlides = [
+  { src: "/fondo_los_llanos.webp", alt: "Moto y repuestos de fondo" },
+  { src: "/rin.jpg", alt: "Rin de motocicleta en exhibición" },
+  { src: "/embobinado.jpg", alt: "Embobinado para motos" },
+  { src: "/partesvarias.jpg", alt: "Partes varias de motocicleta" },
+  { src: "/kit.jpg", alt: "Kit de repuestos" },
+  { src: "/rodaje.jpg", alt: "Rodaje de motor" },
+  { src: "/amortiguador.jpg", alt: "Amortiguador de motocicleta" },
+  { src: "/repuestolosllanos.jpg", alt: "Repuestos los Llanos" },
+]
+
 export function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroSlides.length)
+    }, 5500)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <Image
-          src="/fondo_los_llanos.webp"
-          alt="Moto y repuestos de fondo"
-          fill
-          priority
-          quality={100}
-          sizes="100vw"
-          className="object-cover"
-        />
+        {heroSlides.map((slide, index) => (
+          <Image
+            key={slide.src}
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            priority={index === 0}
+            quality={100}
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-700 ease-out ${index === activeIndex ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
         <div className="absolute inset-0 bg-linear-to-b from-black/55 to-black/75" aria-hidden="true" />
       </div>
 
