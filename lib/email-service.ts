@@ -6,7 +6,7 @@ import type { ContactFormData, SupportMessageData } from "./types"
 const resendApiKey = process.env.RESEND_API_KEY
 const contactEmail = process.env.CONTACT_EMAIL
 // Use explicit branded sender with env override
-const smtpFrom = process.env.SMTP_FROM ?? "Ventas Multirepuestos <ventas@multirepuestoslosllanos.com>"
+const smtpFrom = process.env.SMTP_FROM ?? "Multi Repuestos <noreply@multirepuestoslosllanos.com>"
 
 const catalogFilename = "catálogo los llanos.pdf"
 const catalogContentType = "application/pdf"
