@@ -3,7 +3,7 @@ import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const smtpFrom = process.env.SMTP_FROM || "Acme <onboarding@resend.dev>"
-const testTo = "jm17.org@gmail.com"
+const testTo = "multirepuestoslosllanos@hotmail.com"
 
 export async function POST() {
   if (!process.env.RESEND_API_KEY) {
